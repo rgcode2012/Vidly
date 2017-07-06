@@ -215,6 +215,14 @@
     <Compile Include="Migrations\201707040819085_populateGenre.Designer.cs">
       <DependentUpon>201707040819085_populateGenre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707060922012_ChangeDataType.cs" />
+    <Compile Include="Migrations\201707060922012_ChangeDataType.Designer.cs">
+      <DependentUpon>201707060922012_ChangeDataType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707060925599_ChangeDataType1.cs" />
+    <Compile Include="Migrations\201707060925599_ChangeDataType1.Designer.cs">
+      <DependentUpon>201707060925599_ChangeDataType1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -225,6 +233,8 @@
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\CustomerFormViewModel.cs" />
+    <Compile Include="ViewModels\MovieFormViewModel.cs" />
     <Compile Include="ViewModels\RandomMovieViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -291,6 +301,8 @@
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
     <Content Include="Views\Movies\Details.cshtml" />
+    <Content Include="Views\Customers\CustomerForm.cshtml" />
+    <Content Include="Views\Movies\MovieForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -333,6 +345,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707040819085_populateGenre.resx">
       <DependentUpon>201707040819085_populateGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707060922012_ChangeDataType.resx">
+      <DependentUpon>201707060922012_ChangeDataType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707060925599_ChangeDataType1.resx">
+      <DependentUpon>201707060925599_ChangeDataType1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
