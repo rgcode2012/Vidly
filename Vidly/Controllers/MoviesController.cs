@@ -5,7 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
+using System.Data.Entity;
 using System.Data.Entity.Validation;
+
 
 namespace Vidly.Controllers
 {
@@ -24,7 +26,7 @@ namespace Vidly.Controllers
         }
         public ViewResult Index()
         {
-            var movies = _context.Movies.Include("Genre").ToList(); ;
+            var movies = _context.Movies.Include(c=>c.Genre).ToList(); ;
 
             return View(movies);
         }
@@ -48,9 +50,9 @@ namespace Vidly.Controllers
             if (movie == null)
                 return HttpNotFound();
 
-            var viewModel = new MovieFormViewModel
+            var viewModel = new MovieFormViewModel(movie)
             {
-                Movie = movie,
+
                 Genres = _context.Genres.ToList()
             };
 
@@ -62,7 +64,7 @@ namespace Vidly.Controllers
 
         public ActionResult Details(int id)
         {
-            var movie = _context.Movies.Include("Genre").FirstOrDefault(c => c.Id == id);
+            var movie = _context.Movies.Include(c=>c.Genre).FirstOrDefault(c => c.Id == id);
             if (movie == null)
                 return HttpNotFound();
 
@@ -71,8 +73,19 @@ namespace Vidly.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
+           if (!ModelState.IsValid)
+            {
+                var viewModel = new MovieFormViewModel(movie)
+                {
+                    Genres = _context.Genres.ToList()
+                };
+
+                return View("MovieForm", viewModel);
+            }
+
             if (movie.Id == 0)
             {
                 movie.DateAdded = DateTime.Now;
